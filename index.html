@@ -95,7 +95,8 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 }
 .col-resizer:hover{background:rgba(37,99,235,.18)}
 
-@media(max-width:1100px){.grid{grid-template-columns:1fr}.splitter{display:none}.stats{grid-template-columns:repeat(2,1fr)}}
+/* 태블릿은 가로 모드에서 데스크톱 2패널을 유지하고, 세로 모드에서만 단일 열로 전환합니다. */
+@media (max-width:800px) and (orientation:portrait), (max-width:700px){.grid{grid-template-columns:1fr}.splitter{display:none}.stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){
  body{font-size:17px}.field{grid-template-columns:1fr 135px}.field.drip-field{grid-template-columns:1fr 200px}.preset-grid{grid-template-columns:repeat(2,1fr)}
  .asset-head,.asset-row{grid-template-columns:.7fr .72fr .86fr .86fr .86fr .86fr 40px}
@@ -514,7 +515,7 @@ function initMainSplitter(){
     saveLayout(getCurrentLayout());
   };
   const onDown=e=>{
-    if(window.innerWidth<=1100)return;
+    if(window.matchMedia("(max-width:700px), (max-width:800px) and (orientation:portrait)").matches)return;
     e.preventDefault();
     splitter.classList.add("dragging");
     startX=e.clientX||e.touches?.[0]?.clientX||0;
