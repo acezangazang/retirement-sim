@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retirement Portfolio Simulator Ver.2</title>
+<title>Retirement Portfolio Simulator Version 2.2</title>
 <style>
 :root{
  --bg:#f3f6fb;--card:#fff;--text:#172033;--muted:#667085;--line:#d9e0ea;
@@ -19,7 +19,7 @@ h2{font-size:22px;margin:0 0 12px} h3{font-size:19px;margin:18px 0 10px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(20,35,60,.06)}
 .section{padding-top:10px;margin-top:10px;border-top:1px solid var(--line)}
 .portfolio-section h3{margin-top:0}
-.preset-section{padding-top:0;margin-top:0;border-top:0}.preset-section h3{margin-top:0}
+.preset-section{padding-top:0;margin-top:0;border-top:0}.preset-section h3{margin:0}.preset-heading{display:flex;align-items:center;gap:8px;margin-bottom:10px}.preset-toggle{padding:6px 11px;font-size:13px}.preset-section.collapsed .preset-grid{display:none}
 .field{display:grid;grid-template-columns:1fr 180px;gap:10px;align-items:center;margin:9px 0}
 .grid>.card:first-child .field{margin:6px 0}.grid>.card:first-child input,.grid>.card:first-child select{padding:8px 10px;font-size:16px}
 .field.drip-field{grid-template-columns:1fr 300px}.drip-controls{display:grid;grid-template-columns:1.45fr 1fr;gap:6px}.drip-controls select{min-width:0;padding-left:8px;padding-right:8px;font-size:15px}
@@ -29,7 +29,7 @@ input[type=checkbox]{width:auto}
 button{border:0;border-radius:12px;padding:12px 14px;font-size:16px;font-weight:800;cursor:pointer;background:var(--accent);color:white}
 button:hover{filter:brightness(.97)}
 .secondary{background:#475569}.accent2{background:var(--accent2)}.danger{background:#b91c1c}.light{background:#eef2f7;color:#25324a;border:1px solid var(--line)}
-.btn-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.btn-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
 .btn-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
 .preset-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:7px}
 .preset-grid button{padding:9px 6px;font-size:14px}
@@ -40,7 +40,9 @@ button:hover{filter:brightness(.97)}
 .sort-head::after{content:"↕";position:absolute;right:0;opacity:.45}
 .sort-head.asc::after{content:"▲";opacity:1}
 .sort-head.desc::after{content:"▼";opacity:1}
-.asset-row{margin-bottom:8px}.asset-row input{text-align:right}.asset-row .name{text-align:left}
+.asset-row{margin-bottom:7px}.asset-row input{box-sizing:border-box;height:41px;padding:8px 10px;text-align:right}.asset-row .name{text-align:left}
+/* 브라우저 기본 스피너 대신, 행 높이를 유지하는 큰 자체 증감 버튼을 사용합니다. */
+.number-control{position:relative;min-width:0}.asset-row .number-control{height:41px}.asset-row .number-control input,.grid>.card:first-child .field .number-control input{padding-right:32px;appearance:textfield;-moz-appearance:textfield}.asset-row .number-control input::-webkit-inner-spin-button,.asset-row .number-control input::-webkit-outer-spin-button,.grid>.card:first-child .field .number-control input::-webkit-inner-spin-button,.grid>.card:first-child .field .number-control input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.grid>.card:first-child .field .number-control{height:36px}.grid>.card:first-child .field .number-control input{box-sizing:border-box;height:36px}.number-step{position:absolute;right:2px;width:27px;height:calc(50% - 3px);padding:0;border:0;border-radius:4px;font-size:11px;line-height:1;background:#dbe4f0;color:#25324a}.number-step:hover{filter:brightness(.94)}.number-step.up{top:2px}.number-step.down{bottom:2px}
 .icon-btn{padding:0;width:40px;height:40px;background:#6b7280}
 .sum{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-weight:800}
 .ok{color:var(--good)}.bad{color:var(--bad)}
@@ -60,9 +62,10 @@ canvas{width:100%;height:340px;display:block;background:#fff;border:1px solid va
 table{width:100%;border-collapse:collapse;table-layout:fixed}
 th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:normal;overflow-wrap:anywhere;font-size:15px;line-height:1.3}
 th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;background:#f8fafc;z-index:2}
-.profile-row{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr;gap:8px}
+.profile-stack{display:grid;gap:8px}.profile-row{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:8px}.profile-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
 .inline{display:flex;gap:8px;align-items:center}
 .kpi-good{color:var(--good)}.kpi-bad{color:var(--bad)}
+.comparison-log{margin-top:14px;padding:16px}.comparison-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.comparison-heading h2{margin:0}.comparison-tools{display:flex;gap:8px}.comparison-heading button{padding:8px 12px;font-size:14px}.comparison-empty{color:var(--muted);padding:12px 0}.comparison-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}.comparison-table{min-width:1380px}.comparison-table th,.comparison-table td{vertical-align:top;text-align:left;padding:10px 9px;font-size:13px}.comparison-table th{font-size:12px}.comparison-table .amount{text-align:right;white-space:nowrap}.comparison-table td.amount{font-weight:700}.comparison-table .portfolio-cell{min-width:260px}.comparison-table small{display:block;color:var(--muted);font-size:11px;line-height:1.35}.comparison-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:5px;min-width:120px}.comparison-actions button{padding:7px 6px;font-size:12px}
 
 .splitter{
   width:10px;
@@ -112,7 +115,7 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 </head>
 <body>
 <div class="wrap">
-<h1>Retirement Portfolio Simulator Ver.2</h1>
+<h1>Retirement Portfolio Simulator Version 2.2</h1>
 
 <div class="grid">
 <section class="card">
@@ -135,13 +138,11 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 
 <div class="section">
 <h3>프로필 저장/불러오기</h3>
-<div class="profile-row">
-<input id="profileName" placeholder="예: 은퇴안 A" data-i18n-placeholder="예: 은퇴안 A">
-<button id="saveProfile" class="accent2">저장</button>
-<select id="profileSelect"></select>
-<button id="loadProfile" class="secondary">불러오기</button>
+<div class="profile-stack">
+<div class="profile-row"><input id="profileName" placeholder="예: 은퇴안 A" data-i18n-placeholder="예: 은퇴안 A"><button id="saveProfile" class="accent2">저장</button></div>
+<div class="profile-row"><select id="profileSelect"></select><button id="loadProfile" class="secondary">불러오기</button></div>
 </div>
-<div class="btn-row">
+<div class="profile-actions">
 <button id="deleteProfile" class="danger">선택 프로필 삭제</button>
 <button id="resetAll" class="light">기본값 초기화</button>
 </div>
@@ -188,11 +189,12 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 <div class="btn-row">
 <button id="addAsset" class="accent2">+ 티커 추가</button>
 <button id="normalize" class="secondary">비율 100% 맞춤</button>
+<button id="calcBtnPortfolio">계산하기</button>
 </div>
 </div>
 
-<div class="section preset-section">
-<h3>ETF 프리셋</h3>
+<div class="section preset-section" id="presetSection">
+<div class="preset-heading"><h3>ETF 프리셋</h3><button id="togglePresets" class="light preset-toggle" type="button" aria-expanded="true">접기</button></div>
 <div class="preset-grid" id="presets"></div>
 </div>
 
@@ -230,10 +232,15 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 </table></div>
 </section>
 </div>
+<section class="card comparison-log">
+<div class="comparison-heading"><h2>계산 비교 로그</h2><div class="comparison-tools"><button id="exportComparisonCsv" class="secondary">CSV 저장</button><button id="clearComparison" class="light">전체 삭제</button></div></div>
+<div id="comparisonEmpty" class="comparison-empty">계산하면 서로 다른 설정의 결과가 여기에 자동으로 기록됩니다.</div>
+<div id="comparisonWrap" class="comparison-wrap" hidden><table class="comparison-table"><thead><tr><th>투자</th><th>정기 투자</th><th>인출·운용</th><th>포트폴리오 비율</th><th class="amount">최종 명목자산</th><th class="amount">최종 실질자산</th><th class="amount">누적 추가 투자금</th><th class="amount">투자 수익</th><th class="amount">누적 인출액</th><th>동작</th></tr></thead><tbody id="comparisonBody"></tbody></table></div>
+</section>
 </div>
 
 <script>
-const STORAGE_KEY="retirementProStateV1",PROFILE_KEY="retirementProProfilesV1";
+const STORAGE_KEY="retirementProStateV1",PROFILE_KEY="retirementProProfilesV1",COMPARISON_KEY="retirementProComparisonLogV1",PRESET_COLLAPSED_KEY="retirementProPresetCollapsedV1";
 const PRESETS={
  VOO:{ret:9,vol:18,y:1.3,g:5},SCHD:{ret:8,vol:16,y:3.5,g:7},QQQI:{ret:8,vol:20,y:14,g:0},
  JEPI:{ret:7,vol:13,y:8,g:0},JEPQ:{ret:8,vol:18,y:10,g:0},SPMO:{ret:10,vol:22,y:.8,g:3},
@@ -250,7 +257,7 @@ const $=id=>document.getElementById(id);
 const num=v=>Number(v)||0;
 const money=v=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(v||0);
 const UI_EN={
- "Retirement Portfolio Simulator Ver.2":"Retirement Portfolio Simulator Ver.2",
+ "Retirement Portfolio Simulator Version 2.2":"Retirement Portfolio Simulator Version 2.2",
  "기본 설정":"Basic settings","언어":"Language","한국어":"Korean","초기 투자금 ($)":"Initial investment ($)","투자 기간 (년)":"Investment period (years)","월 정기 투자금 ($)":"Monthly contribution ($)","투자금 연간 증가율 (%)":"Annual contribution growth (%)","정기 투자 시작 연도":"Contribution start year","정기 투자 종료 연도 (0=전체)":"Contribution end year (0 = through end)","정기 투자 배분":"Contribution allocation","투자 시점":"Contribution timing","월초":"Beginning of month","월말":"End of month","월 인출액 ($)":"Monthly withdrawal ($)","물가상승률 (%)":"Inflation rate (%)","미국 원천징수 (%)":"US withholding tax (%)","리밸런싱":"Rebalancing","매년":"Annual","하지 않음":"None",
  "분배금 처리":"Distribution handling","재투자 대상":"Reinvestment target","인출 후 남는 금액만 재투자":"Reinvest surplus after withdrawals","전액 DRIP 후 필요액 매도":"Reinvest all distributions, then sell as needed","재투자하지 않고 현금 보유":"Hold cash; do not reinvest","설정 비율대로":"Target allocation","Y축 범위":"Y-axis range","최저값부터 확대":"Zoom from minimum","0부터 시작":"Start from zero","계산하기":"Calculate",
  "포트폴리오":"Portfolio","티커":"Ticker","비율%":"Weight %","총수익%":"Total return %","변동성%":"Volatility %","분배율%":"Distribution yield %","분배성장%":"Distribution growth %","+ 티커 추가":"Add ticker","비율 100% 맞춤":"Normalize to 100%","ETF 프리셋":"ETF presets","프로필 저장/불러오기":"Save/load profile","저장":"Save","불러오기":"Load","선택 프로필 삭제":"Delete selected profile","기본값 초기화":"Reset defaults","입력값은 자동 저장되며 다음에 파일을 열 때 마지막 상태로 복원됩니다.":"Inputs are saved automatically and restored the next time you open this file.",
@@ -259,16 +266,17 @@ const UI_EN={
  "연도별 결과 ":"Annual results ","(실질자산 = 물가상승률을 반영한 현재 가치)":"(Real assets = current value adjusted for inflation)","연도":"Year","연초 자산":"Start-of-year assets","총수익":"Total return","세후 분배금":"After-tax distributions","연간 인출":"Annual withdrawals","순재투자/매도":"Net reinvestment/sales","연말 명목자산":"End-of-year nominal assets","월":"Month","월초 자산":"Start-of-month assets","인출액":"Withdrawal","부족/잉여":"Shortfall/surplus","월말 자산":"End-of-month assets",
  "예: 은퇴안 A":"e.g., Retirement Plan A","프로필 선택":"Select profile","비율 합계":"Total allocation","초기금, 기간, 비율 합계 100%를 확인해 주세요.":"Check the initial investment, period, and that total allocation equals 100%.","정기 투자 시작/종료 연도와 투자금 액수를 확인해 주세요.":"Check the contribution amount and contribution start/end years.","프로필 이름을 입력하세요.":"Enter a profile name.","프로필을 삭제할까요?":"Delete this profile?","기본값으로 초기화할까요?":"Reset to defaults?","요약을 복사했습니다.":"Summary copied."
 };
-const tr=text=>$("language")?.value==="en"?(UI_EN[text]||text):text;
+const tr=text=>$("language")?.value==="en"?(({접기:"Collapse",펼치기:"Expand","계산 비교 로그":"Calculation comparison log","전체 삭제":"Clear all","계산하면 서로 다른 설정의 결과가 여기에 자동으로 기록됩니다.":"Results from unique settings are recorded here automatically.","투자":"Investment","정기 투자":"Contributions","인출·운용":"Withdrawals & management","포트폴리오 비율":"Portfolio allocation","누적 인출액":"Total withdrawals","동작":"Actions","불러오기":"Load","삭제":"Delete"}[text])||UI_EN[text]||text):text;
 const yearLabel=year=>$("language")?.value==="en"?`Year ${year}`:`${year}년`;
 const monthLabel=(year,month)=>$("language")?.value==="en"?`Year ${year}, Month ${month}`:`${year}년 ${month}월`;
 function applyLanguage(){
- const english=$("language")?.value==="en";document.documentElement.lang=english?"en":"ko";document.title=english?UI_EN["Retirement Portfolio Simulator Ver.2"]:"Retirement Portfolio Simulator Ver.2";
+ const english=$("language")?.value==="en";document.documentElement.lang=english?"en":"ko";document.title=english?UI_EN["Retirement Portfolio Simulator Version 2.2"]:"Retirement Portfolio Simulator Version 2.2";
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;
- while(node=walker.nextNode()){const parent=node.parentElement;if(!parent||parent.closest("script,style"))continue;if(node._koText===undefined)node._koText=node.nodeValue;node.nodeValue=english?(UI_EN[node._koText]||node._koText):node._koText;}
+ while(node=walker.nextNode()){const parent=node.parentElement;if(!parent||parent.closest("script,style"))continue;if(node._koText===undefined)node._koText=node.nodeValue;node.nodeValue=english?tr(node._koText):node._koText;}
  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>el.placeholder=tr(el.dataset.i18nPlaceholder));
 }
 
+function addNumberControl(input){if(input.closest(".number-control"))return;const control=document.createElement("div");control.className="number-control";input.before(control);control.append(input);[[-1,"down","▼"],[1,"up","▲"]].forEach(([direction,kind,symbol])=>{const button=document.createElement("button");button.type="button";button.className=`number-step ${kind}`;button.textContent=symbol;button.onclick=()=>{if(!Number.isFinite(input.valueAsNumber))input.value=0;direction>0?input.stepUp():input.stepDown();input.dispatchEvent(new Event("input",{bubbles:true}));input.dispatchEvent(new Event("change",{bubbles:true}));input.focus();};control.append(button);});}
 function addAssetRow(name="NEW",weight=0,ret=8,vol=18,y=2,g=0){
  const percentText=v=>Number.isFinite(Number(v))?Number(v).toFixed(2):"0.00";
  const row=document.createElement("div");row.className="asset-row";
@@ -276,6 +284,7 @@ function addAssetRow(name="NEW",weight=0,ret=8,vol=18,y=2,g=0){
  <input class="ret" type="number" value="${ret}" step=".1"><input class="vol" type="number" value="${vol}" step=".1">
  <input class="yield" type="number" value="${percentText(y)}" step=".01"><input class="growth" type="number" value="${percentText(g)}" step=".01">
  <button class="icon-btn remove">×</button>`;
+ row.querySelectorAll('input[type="number"]').forEach(addNumberControl);
  row.querySelector(".remove").onclick=()=>{row.remove();updateSum();refreshInvestmentTargets();autoSave();};
  row.querySelectorAll("input").forEach(i=>i.addEventListener("input",()=>{updateSum();refreshInvestmentTargets();autoSave();}));
  $("assets").appendChild(row);updateSum();refreshInvestmentTargets();
@@ -295,16 +304,25 @@ function refreshInvestmentTargets(reinvestSelected,contributionSelected){const n
 function setState(s){$("language").value=s.language||"en";$("initial").value=s.initial;$("years").value=s.years;$("monthlyContribution").value=s.monthlyContribution||0;$("contributionGrowth").value=s.contributionGrowth||0;$("contributionStart").value=s.contributionStart||1;$("contributionEnd").value=s.contributionEnd??0;$("contributionTiming").value=s.contributionTiming||"end";$("monthly").value=s.monthly;$("inflation").value=s.inflation;$("usTax").value=s.usTax;$("rebalance").value=s.rebalance;$("drip").value=s.drip;$("returnShock").value=s.returnShock||0;$("yieldShock").value=s.yieldShock||0;$("mcRuns").value=s.mcRuns||1000;$("successTarget").value=s.successTarget||1000000;$("assets").innerHTML="";(s.assets||[]).forEach(a=>addAssetRow(a.name,a.weight*100,a.ret*100,a.vol*100,a.y*100,a.g*100));refreshInvestmentTargets(s.reinvestTarget,s.contributionTarget);updateSum();applyLanguage();}
 function autoSave(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(getState()));}catch(e){}}
 function loadAuto(){try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY));setState(s||defaultState());}catch(e){setState(defaultState());}}
+function setPresetsCollapsed(collapsed,remember=false){const section=$("presetSection"),button=$("togglePresets"),label=collapsed?"펼치기":"접기";section.classList.toggle("collapsed",collapsed);button._koText=label;button.textContent=tr(label);button.setAttribute("aria-expanded",String(!collapsed));if(remember)try{localStorage.setItem(PRESET_COLLAPSED_KEY,collapsed?"1":"0");}catch(e){}}
+function restorePresetCollapse(){try{const stored=localStorage.getItem(PRESET_COLLAPSED_KEY);setPresetsCollapsed(stored===null?true:stored==="1");}catch(e){setPresetsCollapsed(true);}}
 function profiles(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY))||{};}catch(e){return {};}}
 function refreshProfiles(selected){const p=profiles(),sel=$("profileSelect"),wanted=selected??sel.value,names=Object.keys(p);sel.replaceChildren(new Option("프로필 선택",""));names.forEach(name=>sel.add(new Option(name,name)));sel.value=names.includes(wanted)?wanted:"";applyLanguage();}
 function saveProfile(){const n=$("profileName").value.trim();if(!n)return alert(tr("프로필 이름을 입력하세요."));const p=profiles();p[n]=getState();localStorage.setItem(PROFILE_KEY,JSON.stringify(p));refreshProfiles();$("profileSelect").value=n;}
 function loadProfile(){const p=profiles(),n=$("profileSelect").value;if(p[n]){setState(p[n]);simulate();autoSave();}}
 function deleteProfile(){const p=profiles(),n=$("profileSelect").value;if(n&&confirm(`${n} ${tr("프로필을 삭제할까요?")}`)){delete p[n];localStorage.setItem(PROFILE_KEY,JSON.stringify(p));refreshProfiles();}}
+function comparisonRecords(){try{return JSON.parse(localStorage.getItem(COMPARISON_KEY))||[];}catch(e){return [];}}
+function comparisonSignature(state){const normalized={...state,language:"",assets:[...state.assets].map(a=>({...a})).sort((a,b)=>a.name.localeCompare(b.name))};return JSON.stringify(normalized);}
+function recordComparison(simulation){const records=comparisonRecords(),signature=comparisonSignature(simulation.state),record={signature,state:JSON.parse(JSON.stringify(simulation.state)),result:{final:simulation.final,real:simulation.real,cumContrib:simulation.cumContrib,investmentGain:simulation.investmentGain,cumWithdraw:simulation.cumWithdraw}};const index=records.findIndex(r=>r.signature===signature);if(index<0)records.push(record);else records[index]=record;try{localStorage.setItem(COMPARISON_KEY,JSON.stringify(records));}catch(e){}renderComparisonLog();}
+function comparisonYear(value,english){return english?`Y${value}`:`${value}년`;}
+function renderComparisonLog(){const records=comparisonRecords(),body=$("comparisonBody"),empty=$("comparisonEmpty"),wrap=$("comparisonWrap");if(!body||!empty||!wrap)return;empty.hidden=records.length>0;wrap.hidden=records.length===0;const english=$("language").value==="en";body.innerHTML=records.map((record,index)=>{const s=record.state,r=record.result,end=s.contributionEnd>0?comparisonYear(s.contributionEnd,english):(english?"End":"전체"),target=s.contributionTarget==="proportional"?tr("설정 비율대로"):s.contributionTarget,reinvest=s.reinvestTarget==="proportional"?tr("설정 비율대로"):s.reinvestTarget,rebalance=tr(s.rebalance==="annual"?"매년":"하지 않음"),portfolio=s.assets.map(a=>`${escapeHtml(a.name)} ${(a.weight*100).toFixed(1)}%`).join(" · ");return `<tr><td><strong>${money(s.initial)}</strong><small>${s.years} ${english?"years":"년"}</small></td><td><strong>${money(s.monthlyContribution)}</strong><small>${s.contributionGrowth}% · ${comparisonYear(s.contributionStart,english)}–${end} · ${target} · ${s.contributionTiming==="begin"?tr("월초"):tr("월말")}</small></td><td><strong>${money(s.monthly)}</strong><small>${rebalance} · ${dripLabel(s.drip)} → ${reinvest}</small></td><td class="portfolio-cell">${portfolio}</td><td class="amount">${money(r.final)}</td><td class="amount">${money(r.real)}</td><td class="amount">${money(r.cumContrib)}</td><td class="amount">${money(r.investmentGain)}</td><td class="amount">${money(r.cumWithdraw)}</td><td><div class="comparison-actions"><button class="secondary" data-log-load="${index}">${tr("불러오기")}</button><button class="danger" data-log-delete="${index}">${tr("삭제")}</button></div></td></tr>`;}).join("");body.querySelectorAll("[data-log-load]").forEach(button=>button.onclick=()=>{const record=comparisonRecords()[Number(button.dataset.logLoad)];if(record){setState(record.state);simulate();}});body.querySelectorAll("[data-log-delete]").forEach(button=>button.onclick=()=>{const records=comparisonRecords();records.splice(Number(button.dataset.logDelete),1);localStorage.setItem(COMPARISON_KEY,JSON.stringify(records));renderComparisonLog();});}
+function clearComparisonLog(){const english=$("language").value==="en";if(confirm(english?"Delete all comparison log records?":"비교 로그를 모두 삭제할까요?")){localStorage.removeItem(COMPARISON_KEY);renderComparisonLog();}}
+function exportComparisonCsv(){const records=comparisonRecords();if(!records.length)return;const headers=[tr("투자 기간 (년)"),tr("초기 투자금 ($)"),tr("월 정기 투자금 ($)"),tr("투자금 연간 증가율 (%)"),tr("정기 투자 시작 연도"),tr("정기 투자 종료 연도 (0=전체)"),tr("정기 투자 배분"),tr("투자 시점"),tr("월 인출액 ($)"),tr("리밸런싱"),tr("분배금 처리"),tr("재투자 대상"),tr("포트폴리오 비율"),tr("최종 명목자산"),tr("최종 실질자산"),tr("누적 추가 투자금"),tr("투자 수익"),tr("누적 인출액")],rows=records.map(record=>{const s=record.state,r=record.result;return [s.years,s.initial,s.monthlyContribution,s.contributionGrowth,s.contributionStart,s.contributionEnd||0,s.contributionTarget,s.contributionTiming,s.monthly,s.rebalance,s.drip,s.reinvestTarget,s.assets.map(a=>`${a.name} ${(a.weight*100).toFixed(2)}%`).join(" · "),r.final,r.real,r.cumContrib,r.investmentGain,r.cumWithdraw];}),csv="\uFEFF"+[headers,...rows].map(row=>row.map(value=>`"${String(value).replace(/"/g,'""')}"`).join(",")).join("\n"),blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="portfolio_comparison_log.csv";a.click();URL.revokeObjectURL(a.href);}
 function buildPresets(){Object.keys(PRESETS).forEach(t=>{const b=document.createElement("button");b.className="light";b.textContent=t;b.onclick=()=>{const p=PRESETS[t];addAssetRow(t,0,p.ret,p.vol,p.y,p.g);autoSave();};$("presets").appendChild(b);});}
 
 function randn(){let u=0,v=0;while(!u)u=Math.random();while(!v)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
 function monteCarlo(state){
- const {assets,runs,years}=state,tax=state.usTax/100,target=state.successTarget,startYear=Math.max(1,state.contributionStart||1),endYear=state.contributionEnd>0?Math.min(years,state.contributionEnd):years;
+ const {assets,years}=state,runs=Math.max(1,Math.floor(state.mcRuns||0)),tax=state.usTax/100,target=state.successTarget,startYear=Math.max(1,state.contributionStart||1),endYear=state.contributionEnd>0?Math.min(years,state.contributionEnd):years;
  const reinvestIndex=state.reinvestTarget==="proportional"?-1:assets.findIndex(a=>a.name===state.reinvestTarget),contributionIndex=state.contributionTarget==="proportional"?-1:assets.findIndex(a=>a.name===state.contributionTarget);
  let finals=[],success=0;
  for(let k=0;k<runs;k++){
@@ -333,7 +351,7 @@ function monteCarlo(state){
  return {success:success/runs,finals,p10:q(.1),p50:q(.5),p90:q(.9)};
 }
 
-function simulate(){
+function simulate(saveToComparison=true){
  const st=getState(),assets=st.assets,warning=$("warning");warning.style.display="none";
  if(st.initial<=0||st.years<1||assets.length===0||Math.abs(assets.reduce((s,a)=>s+a.weight,0)-1)>.0001){warning.textContent=tr("초기금, 기간, 비율 합계 100%를 확인해 주세요.");warning.style.display="block";return;}
  if(st.monthlyContribution<0||st.contributionStart<1||st.contributionEnd<0||(st.contributionEnd>0&&st.contributionEnd<st.contributionStart)){warning.textContent=tr("정기 투자 시작/종료 연도와 투자금 액수를 확인해 주세요.");warning.style.display="block";return;}
@@ -384,6 +402,7 @@ function simulate(){
  const mc=monteCarlo(st);
  const final=annual.at(-1).end,investmentGain=final+cumWithdraw-st.initial-cumContrib;
  lastSimulation={state:st,annual,monthly,assetSeries,initial:st.initial,final,real:annual.at(-1).real,cumWithdraw,cumContrib,investmentGain,minAsset,mc};
+ if(saveToComparison)recordComparison(lastSimulation);
  render();autoSave();
 }
 
@@ -396,7 +415,7 @@ function render(){
  $("successRate").className=s.mc.success>=.8?"kpi-good":"kpi-bad";
  $("yearBody").innerHTML=s.annual.map(r=>`<tr><td>${yearLabel(r.year)}</td><td>${money(r.start)}</td><td>${money(r.totalReturn)}</td><td>${money(r.dist)}</td><td>${money(r.contribution)}</td><td>${money(r.withdraw)}</td><td>${r.net>=0?"+":""}${money(r.net)}</td><td><strong>${money(r.end)}</strong></td><td>${money(r.real)}</td></tr>`).join("");
  $("monthBody").innerHTML=s.monthly.map(r=>`<tr><td>${monthLabel(r.year,r.month)}</td><td>${money(r.start)}</td><td>${money(r.dist)}</td><td>${money(r.contribution)}</td><td>${money(r.withdraw)}</td><td>${r.net>=0?"+":""}${money(r.net)}</td><td>${money(r.end)}</td></tr>`).join("");
- applyLanguage();
+ renderComparisonLog();applyLanguage();
 }
 
 function dripLabel(drip){return tr(drip==="surplus"?"인출 후 남는 금액만 재투자":drip==="all"?"전액 DRIP 후 필요액 매도":"재투자하지 않고 현금 보유");}
@@ -465,8 +484,12 @@ function initPortfolioSorting(){
 }
 
 document.querySelectorAll("input,select").forEach(el=>el.addEventListener("change",autoSave));
+document.querySelectorAll(".grid>.card:first-child .field input[type=number]").forEach(addNumberControl);
 $("language").addEventListener("change",()=>{applyLanguage();if(lastSimulation)render();});
-$("addAsset").onclick=()=>{addAssetRow();autoSave();};$("normalize").onclick=normalize;$("calcBtn").onclick=simulate;
+$("addAsset").onclick=()=>{addAssetRow();autoSave();};$("normalize").onclick=normalize;$("calcBtn").onclick=simulate;$("calcBtnPortfolio").onclick=simulate;
+$("togglePresets").onclick=()=>setPresetsCollapsed(!$("presetSection").classList.contains("collapsed"),true);
+$("clearComparison").onclick=clearComparisonLog;
+$("exportComparisonCsv").onclick=exportComparisonCsv;
 $("saveProfile").onclick=saveProfile;$("loadProfile").onclick=loadProfile;$("deleteProfile").onclick=deleteProfile;
 $("resetAll").onclick=()=>{if(confirm(tr("기본값으로 초기화할까요?"))){setState(defaultState());simulate();autoSave();}};
 $("exportCsv").onclick=exportCsv;$("printPdf").onclick=()=>{renderPrintSettings();window.print();};$("copySummary").onclick=copySummary;$("saveSnapshot").onclick=()=>{const d=new Date().toLocaleString();$("profileName").value=tr("시나리오")+" "+d;saveProfile();};
@@ -607,7 +630,7 @@ function initLayoutControls(){
   initResizableTable(document.getElementById("monthTable"));
 }
 
-buildPresets();loadAuto();refreshProfiles();simulate();initLayoutControls();initPortfolioSorting();
+buildPresets();loadAuto();restorePresetCollapse();refreshProfiles();simulate(false);renderComparisonLog();initLayoutControls();initPortfolioSorting();
 </script>
 </body>
 </html>
