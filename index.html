@@ -255,7 +255,7 @@ let currentChart="total",lastSimulation=null,activeAssets=new Set();
 
 const $=id=>document.getElementById(id);
 const num=v=>Number(v)||0;
-const money=v=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(v||0);
+const money=v=>new Intl.NumberFormat("en-US",{maximumFractionDigits:0}).format(v||0);
 const UI_EN={
  "Retirement Portfolio Simulator Version 2.2":"Retirement Portfolio Simulator Version 2.2",
  "기본 설정":"Basic settings","언어":"Language","한국어":"Korean","초기 투자금 ($)":"Initial investment ($)","투자 기간 (년)":"Investment period (years)","월 정기 투자금 ($)":"Monthly contribution ($)","투자금 연간 증가율 (%)":"Annual contribution growth (%)","정기 투자 시작 연도":"Contribution start year","정기 투자 종료 연도 (0=전체)":"Contribution end year (0 = through end)","정기 투자 배분":"Contribution allocation","투자 시점":"Contribution timing","월초":"Beginning of month","월말":"End of month","월 인출액 ($)":"Monthly withdrawal ($)","물가상승률 (%)":"Inflation rate (%)","미국 원천징수 (%)":"US withholding tax (%)","리밸런싱":"Rebalancing","매년":"Annual","하지 않음":"None",
