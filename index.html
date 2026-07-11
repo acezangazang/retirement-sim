@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>은퇴 포트폴리오 시뮬레이터 Ver.2</title>
+<title>Retirement Portfolio Simulator Ver.2</title>
 <style>
 :root{
  --bg:#f3f6fb;--card:#fff;--text:#172033;--muted:#667085;--line:#d9e0ea;
@@ -111,7 +111,7 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 </head>
 <body>
 <div class="wrap">
-<h1>은퇴 포트폴리오 시뮬레이터 Ver.2</h1>
+<h1>Retirement Portfolio Simulator Ver.2</h1>
 
 <div class="grid">
 <section class="card">
@@ -262,7 +262,7 @@ const tr=text=>$("language")?.value==="en"?(UI_EN[text]||text):text;
 const yearLabel=year=>$("language")?.value==="en"?`Year ${year}`:`${year}년`;
 const monthLabel=(year,month)=>$("language")?.value==="en"?`Year ${year}, Month ${month}`:`${year}년 ${month}월`;
 function applyLanguage(){
- const english=$("language")?.value==="en";document.documentElement.lang=english?"en":"ko";document.title=english?UI_EN["은퇴 포트폴리오 시뮬레이터 Ver.2"]:"은퇴 포트폴리오 시뮬레이터 Ver.2";
+ const english=$("language")?.value==="en";document.documentElement.lang=english?"en":"ko";document.title=english?UI_EN["Retirement Portfolio Simulator Ver.2"]:"Retirement Portfolio Simulator Ver.2";
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;
  while(node=walker.nextNode()){const parent=node.parentElement;if(!parent||parent.closest("script,style"))continue;if(node._koText===undefined)node._koText=node.nodeValue;node.nodeValue=english?(UI_EN[node._koText]||node._koText):node._koText;}
  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>el.placeholder=tr(el.dataset.i18nPlaceholder));
