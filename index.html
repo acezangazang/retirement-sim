@@ -19,7 +19,7 @@ h2{font-size:22px;margin:0 0 12px} h3{font-size:19px;margin:18px 0 10px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(20,35,60,.06)}
 .section{padding-top:10px;margin-top:10px;border-top:1px solid var(--line)}
 .portfolio-section h3{margin-top:0}
-.preset-section{padding-top:0;margin-top:0;border-top:0}.preset-section h3{margin:0}.preset-heading{display:flex;align-items:center;gap:8px;margin-bottom:10px}.preset-toggle{padding:6px 11px;font-size:13px}.preset-section.collapsed .preset-grid{display:none}
+.preset-section{padding-top:0;margin-top:6px;border-top:0}.preset-section h3{margin:0}.preset-heading{display:flex;align-items:center;gap:8px;margin-bottom:10px}.preset-toggle{padding:6px 11px;font-size:13px}.preset-section.collapsed .preset-grid{display:none}
 .field{display:grid;grid-template-columns:1fr 180px;gap:10px;align-items:center;margin:9px 0}
 .grid>.card:first-child .field{margin:6px 0}.grid>.card:first-child input,.grid>.card:first-child select{padding:8px 10px;font-size:16px}
 .field.drip-field{grid-template-columns:1fr 300px}.drip-controls{display:grid;grid-template-columns:1.45fr 1fr;gap:6px}.drip-controls select{min-width:0;padding-left:8px;padding-right:8px;font-size:15px}
@@ -49,8 +49,8 @@ button:hover{filter:brightness(.97)}
 .note{font-size:14px;color:var(--muted);margin-top:9px}
 .warning{display:none;background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;border-radius:12px;padding:10px;margin-bottom:10px}
 .stats{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-bottom:12px}
-.stat{background:var(--soft);border-radius:13px;padding:9px;min-width:0}
-.stat small{display:block;color:var(--muted);font-size:11px;overflow-wrap:anywhere}.stat strong{display:block;font-size:clamp(16px,1.45vw,21px);margin-top:3px;white-space:nowrap}
+.stat{display:flex;flex-direction:column;background:var(--soft);border-radius:13px;padding:9px;min-width:0}
+.stat small{display:block;order:2;color:var(--muted);font-size:11px;margin-top:3px;overflow-wrap:anywhere}.stat strong{display:block;order:1;font-size:clamp(16px,1.45vw,21px);margin-top:0;white-space:nowrap}
 .tabs,.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
 .tabs button,.filters button{width:auto;padding:8px 12px;background:#e9eef6;color:#28364e}
 .tabs button.active,.filters button.active{background:var(--accent);color:#fff}
@@ -65,7 +65,7 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 .profile-stack{display:grid;gap:8px}.profile-row{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:8px}.profile-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
 .inline{display:flex;gap:8px;align-items:center}
 .kpi-good{color:var(--good)}.kpi-bad{color:var(--bad)}
-.comparison-log{margin-top:14px;padding:16px}.comparison-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.comparison-heading h2{margin:0}.comparison-tools{display:flex;gap:8px}.comparison-heading button{padding:8px 12px;font-size:14px}.comparison-empty{color:var(--muted);padding:12px 0}.comparison-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}.comparison-table{min-width:1380px}.comparison-table th,.comparison-table td{vertical-align:top;text-align:left;padding:10px 9px;font-size:13px}.comparison-table th{font-size:12px}.comparison-table .amount{text-align:right;white-space:nowrap}.comparison-table td.amount{font-weight:700}.comparison-table .portfolio-cell{min-width:260px}.comparison-table small{display:block;color:var(--muted);font-size:11px;line-height:1.35}.comparison-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:5px;min-width:120px}.comparison-actions button{padding:7px 6px;font-size:12px}
+.comparison-log{margin-top:14px;padding:16px}.comparison-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.comparison-heading h2{margin:0}.comparison-tools{display:flex;gap:8px}.comparison-heading button{padding:8px 12px;font-size:14px}.comparison-empty{color:var(--muted);padding:12px 0}.comparison-wrap{overflow-x:hidden;border:1px solid var(--line);border-radius:12px}.comparison-table{width:100%;min-width:0;table-layout:fixed}.comparison-table th,.comparison-table td{vertical-align:top;text-align:left;padding:10px 7px;font-size:13px;white-space:normal;overflow-wrap:anywhere}.comparison-table th{font-size:12px}.comparison-table th:nth-child(1){width:8%}.comparison-table th:nth-child(2),.comparison-table th:nth-child(3){width:13%}.comparison-table th:nth-child(4){width:18%}.comparison-table th:nth-child(n+5):nth-child(-n+9){width:8%}.comparison-table th:nth-child(10){width:8%}.comparison-table .amount{text-align:right;white-space:normal}.comparison-table td.amount{font-weight:700}.comparison-table .portfolio-cell{min-width:0}.comparison-table small{display:block;color:var(--muted);font-size:11px;line-height:1.35}.comparison-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;min-width:0}.comparison-actions button{padding:7px 3px;font-size:12px;min-width:0}
 
 .splitter{
   width:10px;
@@ -103,7 +103,7 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 @media(max-width:700px){
  body{font-size:17px}.field{grid-template-columns:1fr 135px}.field.drip-field{grid-template-columns:1fr 200px}.preset-grid{grid-template-columns:repeat(2,1fr)}
  .asset-head,.asset-row{grid-template-columns:.7fr .72fr .86fr .86fr .86fr .86fr 40px}
- .stats{grid-template-columns:1fr}.btn-row4{grid-template-columns:1fr 1fr}
+ .stats{grid-template-columns:1fr}.btn-row4{grid-template-columns:1fr 1fr}.comparison-table th,.comparison-table td{padding:7px 3px;font-size:11px}.comparison-table small{font-size:10px}.comparison-actions{grid-template-columns:1fr}.comparison-actions button{padding:5px 2px;font-size:10px}
 }
 @media print{
  body{background:#fff}.wrap{width:100%;margin:0}.grid{display:block}.card{box-shadow:none;border:none}
@@ -221,7 +221,7 @@ th:first-child,td:first-child{text-align:left} th{position:sticky;top:0;backgrou
 
 <h3>연도별 결과 <span style="font-size:13px;font-weight:400;color:#667085;">(실질자산 = 물가상승률을 반영한 현재 가치)</span></h3>
 <div class="table-wrap"><table id="yearTable" class="resizable-table">
-<thead><tr><th>연도</th><th>연초 자산</th><th>총수익</th><th>세후 분배금</th><th>정기 투자</th><th>연간 인출</th><th>순재투자/매도</th><th>연말 명목자산</th><th>실질자산</th></tr></thead>
+<thead><tr><th>연도</th><th>연초 자산</th><th><span id="priceGainHeader">가격 상승액</span></th><th><span id="distributionHeader">세후 분배금</span></th><th>정기 투자</th><th>연간 인출</th><th>순재투자/매도</th><th>연말 명목자산</th><th>실질자산</th></tr></thead>
 <tbody id="yearBody"></tbody>
 </table></div>
 
@@ -263,7 +263,7 @@ const UI_EN={
  "포트폴리오":"Portfolio","티커":"Ticker","비율%":"Weight %","총수익%":"Total return %","변동성%":"Volatility %","분배율%":"Distribution yield %","분배성장%":"Distribution growth %","+ 티커 추가":"Add ticker","비율 100% 맞춤":"Normalize to 100%","ETF 프리셋":"ETF presets","프로필 저장/불러오기":"Save/load profile","저장":"Save","불러오기":"Load","선택 프로필 삭제":"Delete selected profile","기본값 초기화":"Reset defaults","입력값은 자동 저장되며 다음에 파일을 열 때 마지막 상태로 복원됩니다.":"Inputs are saved automatically and restored the next time you open this file.",
  "시나리오":"Scenario","전체 수익률 조정 (%)":"Portfolio return adjustment (%)","전체 분배율 조정 (%)":"Portfolio distribution-yield adjustment (%)","보수적":"Conservative","기준":"Base","낙관적":"Optimistic","위기":"Crisis","몬테카를로":"Monte Carlo","시뮬레이션 횟수":"Simulation runs","성공 기준 최종자산 ($)":"Target final assets ($)",
  "총자산":"Total assets","실질자산":"Real assets","자산별":"By asset","월 현금흐름":"Monthly cash flow","월별 현금흐름":"Monthly cash flow","월 분배금":"Monthly distributions","월 인출액":"Monthly withdrawals","정기 투자":"Contributions","누적 추가 투자금":"Total contributions","투자 수익":"Investment gain","중앙값":"Median","CSV 저장":"Save CSV","PDF/인쇄":"PDF/Print","요약 복사":"Copy summary","시나리오 저장":"Save scenario","예상 결과":"Projected results","최종 명목자산":"Final nominal assets","최종 실질자산":"Final real assets","1년 차 월평균 현금":"Year 1 average monthly cash","FIRE 기준액":"FIRE target","몬테카를로 성공률":"Monte Carlo success rate",
- "연도별 결과 ":"Annual results ","(실질자산 = 물가상승률을 반영한 현재 가치)":"(Real assets = current value adjusted for inflation)","연도":"Year","연초 자산":"Start-of-year assets","총수익":"Total return","세후 분배금":"After-tax distributions","연간 인출":"Annual withdrawals","순재투자/매도":"Net reinvestment/sales","연말 명목자산":"End-of-year nominal assets","월":"Month","월초 자산":"Start-of-month assets","인출액":"Withdrawal","부족/잉여":"Shortfall/surplus","월말 자산":"End-of-month assets",
+ "연도별 결과 ":"Annual results ","(실질자산 = 물가상승률을 반영한 현재 가치)":"(Real assets = current value adjusted for inflation)","연도":"Year","연초 자산":"Start-of-year assets","가격 상승액":"Price gain","세후 분배금":"After-tax distributions","연간 인출":"Annual withdrawals","순재투자/매도":"Net reinvestment/sales","연말 명목자산":"End-of-year nominal assets","월":"Month","월초 자산":"Start-of-month assets","인출액":"Withdrawal","부족/잉여":"Shortfall/surplus","월말 자산":"End-of-month assets",
  "예: 은퇴안 A":"e.g., Retirement Plan A","프로필 선택":"Select profile","비율 합계":"Total allocation","초기금, 기간, 비율 합계 100%를 확인해 주세요.":"Check the initial investment, period, and that total allocation equals 100%.","정기 투자 시작/종료 연도와 투자금 액수를 확인해 주세요.":"Check the contribution amount and contribution start/end years.","프로필 이름을 입력하세요.":"Enter a profile name.","프로필을 삭제할까요?":"Delete this profile?","기본값으로 초기화할까요?":"Reset to defaults?","요약을 복사했습니다.":"Summary copied."
 };
 const tr=text=>$("language")?.value==="en"?(({접기:"Collapse",펼치기:"Expand","계산 비교 로그":"Calculation comparison log","전체 삭제":"Clear all","계산하면 서로 다른 설정의 결과가 여기에 자동으로 기록됩니다.":"Results from unique settings are recorded here automatically.","투자":"Investment","정기 투자":"Contributions","인출·운용":"Withdrawals & management","포트폴리오 비율":"Portfolio allocation","누적 인출액":"Total withdrawals","동작":"Actions","불러오기":"Load","삭제":"Delete"}[text])||UI_EN[text]||text):text;
@@ -333,8 +333,8 @@ function monteCarlo(state){
    const monthWithdraw=state.monthly*Math.pow(1+state.inflation/100,y-1);
    for(let m=1;m<=12;m++){
     if(state.contributionTiming==="begin")applyAmount(monthlyContribution,contributionIndex);
-    const returns=[];assets.forEach((a,i)=>{const annual=Math.max(-.99,a.ret+state.returnShock/100),mr=Math.max(-.99,Math.pow(1+annual,1/12)-1+a.vol/Math.sqrt(12)*randn());returns[i]=balances[i]*mr;});balances=balances.map((b,i)=>b+returns[i]);
-    let dist=0;assets.forEach((a,i)=>{const d=(balances[i]-returns[i])*yields[i]/12*(1-tax);dist+=d;balances[i]-=d;});
+    const returns=[];assets.forEach((a,i)=>{const annualTotal=Math.max(-.99,a.ret+state.returnShock/100),totalMonthly=Math.max(-.99,Math.pow(1+annualTotal,1/12)-1+a.vol/Math.sqrt(12)*randn()),priceMonthly=Math.max(-.99,totalMonthly-yields[i]/12);returns[i]=balances[i]*priceMonthly;});balances=balances.map((b,i)=>b+returns[i]);
+    let dist=0;assets.forEach((a,i)=>{const d=(balances[i]-returns[i])*yields[i]/12*(1-tax);dist+=d;});
     const net=dist-monthWithdraw;
     if(state.drip==="surplus")applyAmount(net,reinvestIndex);
     else if(state.drip==="all"){applyAmount(dist,reinvestIndex);balances=balances.map((b,i)=>b-monthWithdraw*assets[i].weight);}
@@ -369,10 +369,10 @@ function simulate(saveToComparison=true){
   for(let m=1;m<=12;m++){
    if(st.contributionTiming==="begin")applyAmount(monthContrib,contributionIndex);
    const mStart=balances.reduce((s,b)=>s+b,0)+cashReserve,rets=[];
-   assets.forEach((a,i)=>{const ar=Math.max(-.99,a.ret+st.returnShock/100),mr=Math.pow(1+ar,1/12)-1;rets[i]=balances[i]*mr;yRet+=rets[i];});
+   assets.forEach((a,i)=>{const annualTotal=Math.max(-.99,a.ret+st.returnShock/100),totalMonthly=Math.pow(1+annualTotal,1/12)-1,priceMonthly=Math.max(-.99,totalMonthly-yields[i]/12);rets[i]=balances[i]*priceMonthly;yRet+=rets[i];});
    balances=balances.map((b,i)=>b+rets[i]);
    let dist=0;
-   assets.forEach((a,i)=>{const d=(balances[i]-rets[i])*yields[i]/12*(1-st.usTax/100);dist+=d;balances[i]-=d;});
+   assets.forEach((a,i)=>{const d=(balances[i]-rets[i])*yields[i]/12*(1-st.usTax/100);dist+=d;});
    let net=0;
    if(st.drip==="surplus"){
     net=dist-monthWith;applyAmount(net,reinvestIndex);
@@ -406,6 +406,9 @@ function simulate(saveToComparison=true){
  render();autoSave();
 }
 
+function compactPercent(value){return Number(value).toFixed(2).replace(/\.00$/,"").replace(/(\.\d)0$/,"$1");}
+function annualResultHeaderLabels(state){const english=$("language").value==="en",totalRate=compactPercent(state.assets.reduce((sum,a)=>sum+a.weight*(a.ret+state.returnShock/100),0)*100),taxRate=compactPercent(state.usTax);return english?{price:`Price Gain (TR ${totalRate}%)`,distribution:`Distributions (Tax ${taxRate}%)`,priceTitle:"TR = Total return (price gain + gross distributions)",distributionTitle:`Distributions after ${taxRate}% withholding tax`}:{price:`가격 상승액 (TR ${totalRate}%)`,distribution:`분배금 (세율 ${taxRate}%)`,priceTitle:"TR = 총수익률 (가격 상승 + 세전 분배금)",distributionTitle:`원천징수 ${taxRate}% 적용 후 분배금`};}
+function updateAnnualResultHeaders(state){const labels=annualResultHeaderLabels(state),price=$("priceGainHeader"),distribution=$("distributionHeader");price.textContent=labels.price;price.title=labels.priceTitle;distribution.textContent=labels.distribution;distribution.title=labels.distributionTitle;}
 function render(){
  const s=lastSimulation;if(!s)return;
  $("resultPeriod").textContent=$("language").value==="en"?`${s.state.years} years`:`${s.state.years}년`;
@@ -415,7 +418,7 @@ function render(){
  $("successRate").className=s.mc.success>=.8?"kpi-good":"kpi-bad";
  $("yearBody").innerHTML=s.annual.map(r=>`<tr><td>${yearLabel(r.year)}</td><td>${money(r.start)}</td><td>${money(r.totalReturn)}</td><td>${money(r.dist)}</td><td>${money(r.contribution)}</td><td>${money(r.withdraw)}</td><td>${r.net>=0?"+":""}${money(r.net)}</td><td><strong>${money(r.end)}</strong></td><td>${money(r.real)}</td></tr>`).join("");
  $("monthBody").innerHTML=s.monthly.map(r=>`<tr><td>${monthLabel(r.year,r.month)}</td><td>${money(r.start)}</td><td>${money(r.dist)}</td><td>${money(r.contribution)}</td><td>${money(r.withdraw)}</td><td>${r.net>=0?"+":""}${money(r.net)}</td><td>${money(r.end)}</td></tr>`).join("");
- renderComparisonLog();applyLanguage();
+ renderComparisonLog();applyLanguage();updateAnnualResultHeaders(s.state);
 }
 
 function dripLabel(drip){return tr(drip==="surplus"?"인출 후 남는 금액만 재투자":drip==="all"?"전액 DRIP 후 필요액 매도":"재투자하지 않고 현금 보유");}
@@ -425,7 +428,7 @@ function settingsSummaryText(st){return `${tr("기본 설정")}\n${settingsSumma
 function escapeHtml(value){return String(value).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"})[c]);}
 function renderPrintSettings(){if(!lastSimulation)return;const st=lastSimulation.state,rows=settingsSummaryRows(st),grid=rows.map(([k,v])=>`<div class="print-item"><span>${escapeHtml(k)}</span><strong>${escapeHtml(v)}</strong></div>`).join(""),assets=st.assets.map(a=>`<tr><td>${escapeHtml(a.name)}</td><td>${(+a.weight*100).toFixed(2)}%</td><td>${(+a.ret*100).toFixed(2)}%</td><td>${(+a.vol*100).toFixed(2)}%</td><td>${(+a.y*100).toFixed(2)}%</td><td>${(+a.g*100).toFixed(2)}%</td></tr>`).join("");$("printSettings").innerHTML=`<h2>${tr("기본 설정")}</h2><div class="print-grid">${grid}</div><h3>${tr("포트폴리오")}</h3><table><thead><tr><th>${tr("티커")}</th><th>${tr("비율%")}</th><th>${tr("총수익%")}</th><th>${tr("변동성%")}</th><th>${tr("분배율%")}</th><th>${tr("분배성장%")}</th></tr></thead><tbody>${assets}</tbody></table>`;}
 function exportCsv(){
- if(!lastSimulation)return;const st=lastSimulation.state;let rows=[[tr("기본 설정"),""],...settingsSummaryRows(st),[],[tr("포트폴리오"),""],[tr("티커"),tr("비율%"),tr("총수익%"),tr("변동성%"),tr("분배율%"),tr("분배성장%")],...st.assets.map(a=>[a.name,(a.weight*100).toFixed(2),(a.ret*100).toFixed(2),(a.vol*100).toFixed(2),(a.y*100).toFixed(2),(a.g*100).toFixed(2)]),[],[tr("연도"),tr("연초 자산"),tr("총수익"),tr("세후 분배금"),tr("정기 투자"),tr("연간 인출"),tr("순재투자/매도"),tr("연말 명목자산"),tr("실질자산")]];
+ if(!lastSimulation)return;const st=lastSimulation.state;let rows=[[tr("기본 설정"),""],...settingsSummaryRows(st),[],[tr("포트폴리오"),""],[tr("티커"),tr("비율%"),tr("총수익%"),tr("변동성%"),tr("분배율%"),tr("분배성장%")],...st.assets.map(a=>[a.name,(a.weight*100).toFixed(2),(a.ret*100).toFixed(2),(a.vol*100).toFixed(2),(a.y*100).toFixed(2),(a.g*100).toFixed(2)]),[],[tr("연도"),tr("연초 자산"),tr("가격 상승액"),tr("세후 분배금"),tr("정기 투자"),tr("연간 인출"),tr("순재투자/매도"),tr("연말 명목자산"),tr("실질자산")]];
  lastSimulation.annual.forEach(r=>rows.push([r.year,r.start,r.totalReturn,r.dist,r.contribution,r.withdraw,r.net,r.end,r.real]));
  const csv="\uFEFF"+rows.map(r=>r.join(",")).join("\n"),blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="portfolio_projection.csv";a.click();URL.revokeObjectURL(a.href);
 }
